@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Spam Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <form action="/predict" method="POST">
+            <!-- Heading -->
+            <h1>Email Spam Detector</h1>
+
+            <p class="description">
+                Welcome to the Email Spam Detector! This tool helps you identify whether an email is spam or not. 
+                Simply paste the email text in the box below, click "Submit," and let the magic happen. 
+                Stay safe from phishing, scams, and unwanted emails!
+            </p>
+
+            <!-- Text Area -->
+            <textarea class="input-box" name="content" placeholder="Paste your email text here..." required>{{email}}</textarea>
+
+
+            <div class="button-container">
+                <button type="submit" class="submit-btn">Submit</button>
+                <a href="/"><button type="button" class="clear-btn">Clear</button></a>
+            </div>
+
+            <!-- Prediction Message -->
+            <div class="prediction-message">
+                {% if prediction %}
+                    {% if prediction == 1 %}
+                        <h2>🚨 This email is likely <span class="spam">spam</span>! Be cautious and avoid interacting with it.</h2>
+                    {% else %}
+                        <h2>✅ This email looks <span class="not-spam">safe</span>! You can proceed with confidence.</h2>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Created by <span class="creator">Naresh B A</span></p>
+    </footer>
+    </script>
+</body>
+</html>
